@@ -57,7 +57,7 @@ def sendAndroidBroadcast():
 #ios
 def sendIOSUnicast():
     unicast = IOSUnicast(appKey, appMasterSecret)
-    unicast.setDeviceToken(deviceToken)
+    unicast.setDeviceToken(deviceTokens)
     unicast.setAlert("这个是一个iOS单播测试")
     unicast.setBadge(1234)
     unicast.setCustomizedField("test", "helloworld");
@@ -151,7 +151,7 @@ def printResult(ret):
     #sendIOSBroadcast()
     # sendIOSGroupcast()
 
-if deviceToken=='all':
+if deviceTokens=='all':
     sendAndroidBroadcast()
 else:
     sendAndroidUnicast()
