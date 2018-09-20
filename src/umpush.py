@@ -2,7 +2,7 @@
 import json,sys
 from umessage.pushclient import PushClient
 from umessage.androidpush import *
-
+from umessage.iospush import *
 from umessage.errorcodes import UMPushError, APIServerErrorCode
 sysInputlist=[]
 
