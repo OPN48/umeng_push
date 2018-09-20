@@ -7,8 +7,8 @@ from umessage.errorcodes import UMPushError, APIServerErrorCode
 sysInputlist=[]
 
 #注意andorid和ios是不同的appkey和appMasterSecret。 在不同需求下换成各自的appkey。或新增ioskey变量
-appKey = ''
-appMasterSecret = ''
+appKey = 'xxxxxxx'
+appMasterSecret = 'xxxxxxxxx'
 
 try:
     for x in range(1,len(sys.argv)):
@@ -16,17 +16,20 @@ try:
 except:
     print (-1,u'缺少输入信息')
 if sys.argv[1]=='-h':
-    print (-1,u'请输入title text extraKey extraValue deviceToken')
+    print (-1,u'请输入title text extraKey extraValue deviceTokens')
 else:
-    listKeys=['title','text','extraKey','extraValue','deviceToken']
+    listKeys=['title','text','extraKey','extraValue','deviceTokens']
     inputdict=dict(zip(listKeys,sysInputlist))
-    deviceToken = 'AssNSSjjepXzOoANUDixWZqeKkl63Y1ec_r1Ga5Iow-I'
-    # deviceToken = inputdict['deviceToken']
+    deviceTokens = inputdict['deviceToken']
 
 #android
 def sendAndroidUnicast():
-    unicast = AndroidUnicast(appKey, appMasterSecret)
-    unicast.setDeviceToken(deviceToken)
+    # 以英文都好判断使用列推还是单推
+    if ',' in deviceTokens:
+        unicast=AndroidListcast(appKey, appMasterSecret)
+    else:
+        unicast = AndroidUnicast(appKey, appMasterSecret)
+    unicast.setDeviceToken(deviceTokens)
     unicast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION)
     unicast.setTicker(inputdict['title']+':'+inputdict['text'])
     unicast.setTitle(inputdict['title'])
