@@ -1,9 +1,9 @@
 #coding=utf-8
-import json,sys
+import sys
 from umessage.pushclient import PushClient
 from umessage.androidpush import *
 from umessage.iospush import *
-from umessage.errorcodes import UMPushError, APIServerErrorCode
+from umessage.errorcodes import APIServerErrorCode
 sysInputlist=[]
 
 #注意andorid和ios是不同的appkey和appMasterSecret。 在不同需求下换成各自的appkey。或新增ioskey变量
@@ -24,7 +24,7 @@ else:
 
 #android
 def sendAndroidUnicast():
-    # 以英文都好判断使用列推还是单推
+    # 以英文逗号判断使用列推还是单推
     if ',' in deviceTokens:
         unicast=AndroidListcast(appKey, appMasterSecret)
     else:
