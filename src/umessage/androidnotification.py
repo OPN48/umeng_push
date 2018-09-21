@@ -1,5 +1,4 @@
 #coding=utf-8
-import json
 from umessage.umengnotification import *
 class AndroidNotification(UmengNotification):
 

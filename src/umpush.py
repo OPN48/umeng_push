@@ -50,7 +50,7 @@ def sendAndroidBroadcast():
     broadcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
     broadcast.setTestMode()
     #Set customized fields
-    broadcast.setExtraField("test", "helloworld");
+    broadcast.serExtra({inputdict["extraKey"]: inputdict["extraValue"]});
     pushClient = PushClient()
     pushClient.send(broadcast)
 
