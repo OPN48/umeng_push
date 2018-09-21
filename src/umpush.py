@@ -20,7 +20,7 @@ if sys.argv[1]=='-h':
 else:
     listKeys=['title','text','extraKey','extraValue','deviceTokens']
     inputdict=dict(zip(listKeys,sysInputlist))
-    deviceTokens = inputdict['deviceToken']
+    deviceTokens = inputdict['deviceTokens']
 
 #android
 def sendAndroidUnicast():
