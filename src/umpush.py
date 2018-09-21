@@ -10,17 +10,7 @@ sysInputlist=[]
 appKey = 'xxxxxxx'
 appMasterSecret = 'xxxxxxxxx'
 
-try:
-    for x in range(1,len(sys.argv)):
-        sysInputlist.append(sys.argv[x])
-except:
-    print (-1,u'缺少输入信息')
-if sys.argv[1]=='-h':
-    print (-1,u'请输入title text extraKey extraValue deviceTokens')
-else:
-    listKeys=['title','text','extraKey','extraValue','deviceTokens']
-    inputdict=dict(zip(listKeys,sysInputlist))
-    deviceTokens = inputdict['deviceTokens']
+
 
 #android
 def sendAndroidUnicast():
@@ -146,12 +136,19 @@ def printResult(ret):
             errorcode = int(ret_json["data"]["error_code"])
             print ("error Code: %s, detail: %s" % (errorcode, APIServerErrorCode.errorMessage(errorcode)));
 
-# if __name__ == '__main__':
-    #sendIOSUnicast()
-    #sendIOSBroadcast()
-    # sendIOSGroupcast()
-
-if deviceTokens=='all':
-    sendAndroidBroadcast()
-else:
-    sendAndroidUnicast()
+if __name__ == '__main__':
+    try:
+        for x in range(1, len(sys.argv)):
+            sysInputlist.append(sys.argv[x])
+        if sysInputlist[0] == '-h':
+            print(-1, u'请输入title text extraKey extraValue deviceTokens 多个deviceTokens使用,分隔输入all则进行全量推送')
+        else:
+            listKeys = ['title', 'text', 'extraKey', 'extraValue', 'deviceTokens']
+            inputdict = dict(zip(listKeys, sysInputlist))
+            deviceTokens = inputdict['deviceTokens']
+            if deviceTokens=='all':
+                sendAndroidBroadcast()
+            else:
+                sendAndroidUnicast()
+    except:
+        print(-1, u'缺少输入信息')
