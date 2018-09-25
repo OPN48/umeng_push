@@ -9,9 +9,7 @@ sysInputlist=[]
 #注意andorid和ios是不同的appkey和appMasterSecret。 在不同需求下换成各自的appkey。或新增ioskey变量
 appKey = 'xxxxxxx'
 appMasterSecret = 'xxxxxxxxx'
-
-
-
+activityAfter='com.xxx.xxx.ui.activity.UmengPushHelperActivity'
 #android
 def sendAndroidUnicast():
     # 以英文逗号判断使用列推还是单推
@@ -25,7 +23,7 @@ def sendAndroidUnicast():
     unicast.setTitle(inputdict['title'])
     unicast.setText(inputdict['text'])
     # unicast.goActivityAfterOpen('指定Activity')
-    unicast.goActivityAfterOpen('')
+    unicast.goActivityAfterOpen(activityAfter)
     unicast.setTestMode()
     unicast.serExtra({inputdict["extraKey"]:inputdict["extraValue"]})
     pushClient = PushClient()
@@ -36,7 +34,7 @@ def sendAndroidBroadcast():
     broadcast.setTicker(inputdict['title']+':'+inputdict['text']);
     broadcast.setTitle(inputdict['title']);
     broadcast.setText(inputdict['text']);
-    broadcast.goAppAfterOpen();
+    broadcast.goAppAfterOpen(activityAfter);
     broadcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
     broadcast.setTestMode()
     #Set customized fields
