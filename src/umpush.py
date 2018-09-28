@@ -26,6 +26,10 @@ def sendAndroidUnicast():
     unicast.goActivityAfterOpen(activityAfter)
     unicast.setTestMode()
     unicast.serExtra({inputdict["extraKey"]:inputdict["extraValue"]})
+
+    unicast.setMiPush('true')
+    unicast.setMiActivity(activityAfter)
+
     pushClient = PushClient()
     pushClient.send(unicast)
 
@@ -39,6 +43,10 @@ def sendAndroidBroadcast():
     broadcast.setTestMode()
     #Set customized fields
     broadcast.serExtra({inputdict["extraKey"]: inputdict["extraValue"]});
+
+    broadcast.setMiPush('true')
+    broadcast.setMiActivity(activityAfter)
+
     pushClient = PushClient()
     pushClient.send(broadcast)
 

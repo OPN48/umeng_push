@@ -28,6 +28,9 @@ class UmengNotification(object):
     CONSTR_FEEDBACK = "feedback"
     CONSTR_DESCRIPTION = "description"
     CONSTR_THIRDPARTY_ID = "thirdparty_id"
+    # 添加安卓厂商通道参数
+    CONSTR_MIPUSH = 'mipush'
+    CONSTR_MI_ACTIVITY = 'mi_activity'
 
     # policy key constartion string
     CONSTR_START_TIME = "start_time"
@@ -41,7 +44,8 @@ class UmengNotification(object):
 	#		"filter", "production_mode", "feedback", "description", "thirdparty_id"]
     #POLICY_KEYS = ["start_time", "expire_time", "max_send_num"]
     ROOT_KEYS = [CONSTR_APPKEY, CONSTR_TIMESTAMP, CONSTR_TYPE, CONSTR_DEVICE_TOKENS, CONSTR_ALIAS, CONSTR_ALIAS_TYPE,
-                 CONSTR_FILE_ID, CONSTR_FILTER, CONSTR_PRODUCTION_MODE, CONSTR_FEEDBACK, CONSTR_DESCRIPTION, CONSTR_THIRDPARTY_ID]
+                 CONSTR_FILE_ID, CONSTR_FILTER, CONSTR_PRODUCTION_MODE, CONSTR_FEEDBACK, CONSTR_DESCRIPTION, CONSTR_THIRDPARTY_ID,
+                 CONSTR_MIPUSH,CONSTR_MI_ACTIVITY]
     POLICY_KEYS = [CONSTR_START_TIME, CONSTR_EXPIRE_TIME, CONSTR_MAX_SEND_NUM]
 
     rootJson = json.loads(CONSTR_EMPTY_JSON);

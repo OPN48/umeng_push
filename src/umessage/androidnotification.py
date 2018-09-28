@@ -116,3 +116,10 @@ class AndroidNotification(UmengNotification):
 
     def setCustomField(self, custom):
         self.setPredefinedKeyValue("custom", custom)
+
+    # 厂商通道参数
+    def setMiPush(self, whether):
+        self.setPredefinedKeyValue("mipush", whether)
+
+    def setMiActivity(self, activity):
+        self.setPredefinedKeyValue("mi_activity", activity)
