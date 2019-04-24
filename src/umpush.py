@@ -10,6 +10,7 @@ sysInputlist=[]
 appKey = 'xxxxxxx'
 appMasterSecret = 'xxxxxxxxx'
 activityAfter='com.xxx.xxx.ui.activity.UmengPushHelperActivity'
+custom='xxx' #如果使用了extraKey解析，custom可以忽略
 #android
 def sendAndroidUnicast():
     # 以英文逗号判断使用列推还是单推
@@ -24,9 +25,10 @@ def sendAndroidUnicast():
     unicast.setText(inputdict['text'])
     # unicast.goActivityAfterOpen('指定Activity')
     unicast.goActivityAfterOpen(activityAfter)
+    unicast.goCustomAfterOpen(custom)
     unicast.setTestMode()
     unicast.serExtra({inputdict["extraKey"]:inputdict["extraValue"]})
-
+    # MiActivity 其实是所有厂商的推送通道，不只是小米
     unicast.setMiPush('true')
     unicast.setMiActivity(activityAfter)
 
