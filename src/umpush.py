@@ -8,7 +8,7 @@ sysInputlist=[]
 
 #注意andorid和ios是不同的appkey和appMasterSecret。 在不同需求下换成各自的appkey。或新增ioskey变量
 appKey = 'xxxxxxx'
-appMasterSecret = 'xxxxxxxxx'
+appMasterSecret = 'xxxxxxxxxx'
 activityAfter='com.xxx.xxx.ui.activity.UmengPushHelperActivity'
 custom='xxx' #如果使用了extraKey解析，custom可以忽略
 #android
@@ -25,6 +25,8 @@ def sendAndroidUnicast():
     unicast.setText(inputdict['text'])
     # unicast.goActivityAfterOpen(activityAfter)
     unicast.goCustomAfterOpen(custom)
+    # 正式环境
+    # unicast.setProductionMode()
     unicast.setTestMode()
     unicast.serExtra({inputdict["extraKey"]:inputdict["extraValue"]})
     # MiActivity 其实是所有厂商的推送通道，不只是小米
@@ -39,8 +41,11 @@ def sendAndroidBroadcast():
     broadcast.setTicker(inputdict['title']+':'+inputdict['text']);
     broadcast.setTitle(inputdict['title']);
     broadcast.setText(inputdict['text']);
-    broadcast.goAppAfterOpen(activityAfter);
+    # broadcast.goAppAfterOpen(activityAfter);
+    broadcast.goCustomAfterOpen(custom);
     broadcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
+    # 正式环境
+    # broadcast.setProductionMode()
     broadcast.setTestMode()
     #Set customized fields
     broadcast.serExtra({inputdict["extraKey"]: inputdict["extraValue"]});
