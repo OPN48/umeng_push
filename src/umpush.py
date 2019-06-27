@@ -9,8 +9,10 @@ sysInputlist=[]
 #注意andorid和ios是不同的appkey和appMasterSecret。 在不同需求下换成各自的appkey。或新增ioskey变量
 appKey = 'xxxxxxx'
 appMasterSecret = 'xxxxxxxxxx'
+# 安卓客户端需要注意这部分的activity解析，厂商通道在app关闭的时候，收到推送使用这个配置
 activityAfter='com.xxx.xxx.ui.activity.UmengPushHelperActivity'
 custom='xxx' #如果使用了extraKey解析，custom可以忽略
+
 #android
 def sendAndroidUnicast():
     # 以英文逗号判断使用列推还是单推
@@ -23,13 +25,18 @@ def sendAndroidUnicast():
     unicast.setTicker(inputdict['title']+':'+inputdict['text'])
     unicast.setTitle(inputdict['title'])
     unicast.setText(inputdict['text'])
+    # 无论如何都打开这个activity，看具体你的客户端业务如何使用
     # unicast.goActivityAfterOpen(activityAfter)
     unicast.goCustomAfterOpen(custom)
+
     # 正式环境
     # unicast.setProductionMode()
+    # 测试环境
     unicast.setTestMode()
+
+
     unicast.serExtra({inputdict["extraKey"]:inputdict["extraValue"]})
-    # MiActivity 其实是所有厂商的推送通道，不只是小米
+    # 虽然叫MiActivity 其实是所有厂商的推送通道，不只是小米
     unicast.setMiPush('true')
     unicast.setMiActivity(activityAfter)
 
